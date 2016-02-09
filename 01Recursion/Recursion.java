@@ -4,6 +4,9 @@ public class Recursion implements hw01{
     }
 
     public double sqrt(double n){
+	if(n<0){
+	    throw(new IllegalArgumentException());
+	}
 	return sqrt(n,1);
     }
 
@@ -16,11 +19,11 @@ public class Recursion implements hw01{
 	}
     }
     
-    /*
+    
     public static void main(String[]args){
 	Recursion r = new Recursion();
-	System.out.println(r.sqrt(100));
+	System.out.println(r.sqrt(-1));
     }
-    */
+    
 
 }
