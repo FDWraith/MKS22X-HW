@@ -16,7 +16,7 @@ public class QueenBoard{
     }
     public boolean solveHelper(int col){
 	boolean det = false;
-        if(col >= array[0].length()){
+        if(col >= array[0].length){
 	    return false;
 	}else{
 	    for(int i = 0;i< array.length;i++){
@@ -92,7 +92,10 @@ public class QueenBoard{
 	return true;
     }
 
-    
+    public static void main(String[]args){
+	QueenBoard b = new QueenBoard(1);
+	System.out.println(b.solve());
+    }
     
     
 }
