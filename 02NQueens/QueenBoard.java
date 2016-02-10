@@ -1,14 +1,45 @@
-public class Board{
+public class QueenBoard{
     private int[][]array;
     
     //Constructors
-    public Board(){
-	Board(8);
+    public QueenBoard(){
+	QueenBoard(8);
     }
-    public Board(int n){
+    public QueenBoard(int n){
 	array = new int[n][n];
 	resetBoard();
     }
+
+    //Methods
+    public boolean solve(){
+	return solveHelper(0);
+    }
+    public boolean solveHelper(int col){
+	boolean det = false;
+        if(col >= array[0].length()){
+	    return false;
+	}else{
+	    for(int i = 0;i< array.length;i++){
+		placeQueen(i,col);
+		det = det || solveHelper(col + 1);
+		removeQueen(i,col);
+	    }
+	    return det;
+	}
+    }
+
+    //ToString
+    public String toString(){
+	String end = "";
+	for(int i = 0; i < array.length; i++){
+	    for(int j =0; j < array.length;j++){
+		end += " "+array[i][j]+" ";
+	    }
+	    end += "/n";
+	}
+	return end;
+    }
+    
 
     //Mutator
     public boolean placeQueen(int x, int y){
@@ -39,16 +70,14 @@ public class Board{
 	    change = -1;
 	}
 	int adj = 1;
-	while(x+adj < array.length && y+adj < array[x+adj].length){
-	    array[x+adj][y+adj] -= change;
+	while(y+adj < array[x+adj].length){
+	    if(x+adj < array.length){
+		array[x+adj][y+adj] -= change;
+	    }
 	    array[x][y+adj] -= change;
-	    adj++;
-	}
-	int vertAdj = -1;
-	adj =1;//reset adj
-	while(x+vertAdj >= 0 && y+adj < array[x+vertAdj].length){
-	    array[x+vertAdj][y+adj] -= change;
-	    vertAdj -= 1;
+	    if(x-adj >= 0){
+		array[x-adj][y+adj] -= change;
+	    }
 	    adj += 1;
 	}
 	return true;
