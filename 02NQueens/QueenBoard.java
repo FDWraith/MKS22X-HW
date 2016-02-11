@@ -39,7 +39,26 @@ public class QueenBoard{
 	}
 	return end;
     }
-    
+
+    public String printSolution(){
+	if(this.solve()){
+	    String end = "";
+	    for(int i =0;i<array.length;i++){
+		for(int j = 0;j<array[i].length;j++){
+		    if(array[i][j] == 1){
+			end += " Q ";
+		    }else{
+			end += " _ ";
+		    }
+		}
+		end += "/n";
+	    }
+	    return end;
+	}else{
+	    return "No Solution";
+	}
+	
+    }
 
     //Mutator
     public boolean placeQueen(int x, int y){
@@ -92,10 +111,7 @@ public class QueenBoard{
 	return true;
     }
 
-    public static void main(String[]args){
-	QueenBoard b = new QueenBoard(1);
-	System.out.println(b.solve());
-    }
+    
     
     
 }
