@@ -18,50 +18,6 @@ public class QueenBoard{
     }
     public boolean solveHelper(int col){
 	boolean det = false;
-	/*
-        if(col == array[0].length){
-	    boolean checker = false;
-	    for(int i = 0;i<array.length;i++){
-		if(array[i][col-1] == 0){
-		    checker = true;;
-		}
-	    }
-	    return checker;
-	}else{
-	    for(int i = 0;i< array.length;i++){
-		placeQueen(i,col);
-		det = det || solveHelper(col + 1);
-		//removeQueen(i,col);
-	    }
-	    return det;
-	}
-	*/
-	/*
-
-	if(col >= array[0].length){
-	    boolean checker = false;
-	    for(int i = 0;i<array.length;i++){
-		if(array[i][col-1] == 1){
-		    checker = true;
-		}
-	    }
-	    return checker;
-	}else{
-	    for(int i = 0;i<array.length;i++){
-		System.out.println(this);
-		if(placeQueen(i,col)){
-		    det = det || solveHelper(col+1);
-		    if(!det){
-			removeQueen(i,col);
-		    }else{
-			return det;
-		    }
-		}
-		
-	    }
-	}
-	return det;
-	*/
 	if(col == array.length){
 	    for(int i =0;i<array.length;i++){
 		if(array[i][col-1]==1){
