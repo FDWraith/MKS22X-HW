@@ -1,5 +1,6 @@
 public class QueenBoard{
     private int[][]array;
+    private boolean solved;
     
     //Constructors
     /*public QueenBoard(){
@@ -12,7 +13,8 @@ public class QueenBoard{
 
     //Methods
     public boolean solve(){
-	return solveHelper(0);
+	solved = solveHelper(0);
+	return solved;
     }
     public boolean solveHelper(int col){
 	boolean det = false;
@@ -34,7 +36,56 @@ public class QueenBoard{
 	    return det;
 	}
 	*/
+	/*
 
+	if(col >= array[0].length){
+	    boolean checker = false;
+	    for(int i = 0;i<array.length;i++){
+		if(array[i][col-1] == 1){
+		    checker = true;
+		}
+	    }
+	    return checker;
+	}else{
+	    for(int i = 0;i<array.length;i++){
+		System.out.println(this);
+		if(placeQueen(i,col)){
+		    det = det || solveHelper(col+1);
+		    if(!det){
+			removeQueen(i,col);
+		    }else{
+			return det;
+		    }
+		}
+		
+	    }
+	}
+	return det;
+	*/
+	if(col == array.length){
+	    for(int i =0;i<array.length;i++){
+		if(array[i][col-1]==1){
+		    System.out.println("here");
+		    return true;
+		}
+	    }
+	    return false;
+	}else{
+	    for(int i =0;i<array.length;i++){
+		//System.out.println(this);
+		//System.out.println(i+","+col);
+		if(placeQueen(i,col)){
+		    det = solveHelper(col+1) || det;
+		    if(det){
+			return true;
+		    }else{
+			//System.out.println("Backtracked");
+			removeQueen(i,col);
+		    }
+		}
+	    }
+	    return det;
+	}
 	
     }
 
@@ -51,8 +102,11 @@ public class QueenBoard{
     }
 
     public void printSolution(){
-	if(this.solve()){
-	    String end = "";
+	if(!solved){
+	    resetBoard();
+	    System.out.println("No Solution");
+	}
+	String end = "";
 	    for(int i =0;i<array.length;i++){
 		for(int j = 0;j<array[i].length;j++){
 		    if(array[i][j] == 1){
@@ -63,16 +117,14 @@ public class QueenBoard{
 		}
 		end += "\n";
 	    }
-	    System.out.println(end);
-	}else{
-	    System.out.println("No solution");
-	}
+	System.out.println(end);
 	
     }
 
     //Mutator
     public boolean placeQueen(int x, int y){
 	if(array[x][y] != 0 ){
+	    //System.out.println("cant "+x+" "+y);
 	    return false;
 	}else{
 	    array[x][y] = 1;
