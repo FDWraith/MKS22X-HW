@@ -2,9 +2,9 @@ public class QueenBoard{
     private int[][]array;
     
     //Constructors
-    public QueenBoard(){
+    /*public QueenBoard(){
 	QueenBoard(8);
-    }
+	}*/
     public QueenBoard(int n){
 	array = new int[n][n];
 	resetBoard();
@@ -16,16 +16,26 @@ public class QueenBoard{
     }
     public boolean solveHelper(int col){
 	boolean det = false;
-        if(col >= array[0].length){
-	    return false;
+	/*
+        if(col == array[0].length){
+	    boolean checker = false;
+	    for(int i = 0;i<array.length;i++){
+		if(array[i][col-1] == 0){
+		    checker = true;;
+		}
+	    }
+	    return checker;
 	}else{
 	    for(int i = 0;i< array.length;i++){
 		placeQueen(i,col);
 		det = det || solveHelper(col + 1);
-		removeQueen(i,col);
+		//removeQueen(i,col);
 	    }
 	    return det;
 	}
+	*/
+
+	
     }
 
     //ToString
@@ -35,12 +45,12 @@ public class QueenBoard{
 	    for(int j =0; j < array.length;j++){
 		end += " "+array[i][j]+" ";
 	    }
-	    end += "/n";
+	    end += "\n";
 	}
 	return end;
     }
 
-    public String printSolution(){
+    public void printSolution(){
 	if(this.solve()){
 	    String end = "";
 	    for(int i =0;i<array.length;i++){
@@ -51,11 +61,11 @@ public class QueenBoard{
 			end += " _ ";
 		    }
 		}
-		end += "/n";
+		end += "\n";
 	    }
-	    return end;
+	    System.out.println(end);
 	}else{
-	    return "No Solution";
+	    System.out.println("No solution");
 	}
 	
     }
@@ -89,7 +99,7 @@ public class QueenBoard{
 	    change = -1;
 	}
 	int adj = 1;
-	while(y+adj < array[x+adj].length){
+	while(y+adj < array[0].length){
 	    if(x+adj < array.length){
 		array[x+adj][y+adj] -= change;
 	    }
