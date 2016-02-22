@@ -55,7 +55,7 @@ public class KnightsBoard{
 		    solveHelper(row + 1,col+2,num+1) ||
 		    solveHelper(row + 1,col-2,num+1) ||
 		    solveHelper(row - 1,col+2,num+1) ||
-		    solveHelper(row - 1,col+2,num+1);
+		    solveHelper(row - 1,col-2,num+1);
 		if(det){
 		    return true;
 		}else{
