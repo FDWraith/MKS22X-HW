@@ -23,11 +23,22 @@ public class Maze{
         try{
 	    File f = new File(filename);
 	    Scanner in = new Scanner(f);
-	    int r =0;
+	    Scanner copy = new Scanner(f);
 	    startx = -1;
 	    starty = -1;
+
+	    int rows =0;
+	    int cols = 0;
 	    while(in.hasNextLine()){
-		String n = in.nextLine();
+		rows += 1;
+		in.nextLine();
+	    }
+	    cols = in.nextLine().length();
+	    maze[][] = new char[rows][cols];
+	    
+	    int r =0;
+	    while(copy.hasNextLine()){
+		String n = copy.nextLine();
 		int c = 0;
 		while(c < n.length()){
 		    maze[r][c] = n.charAt(c);
