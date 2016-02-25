@@ -27,14 +27,13 @@ public class Maze{
 	    startx = -1;
 	    starty = -1;
 
-	    int rows =0;
+	    int rows = 0;
 	    int cols = 0;
 	    while(in.hasNextLine()){
-		rows += 1;
-		in.nextLine();
-	    }
-	    cols = in.nextLine().length();
-	    maze[][] = new char[rows][cols];
+		rows += 1;		
+		cols = in.nextLine().length();
+	    } 
+	    maze = new char[rows][cols];
 	    
 	    int r =0;
 	    while(copy.hasNextLine()){
@@ -91,15 +90,19 @@ public class Maze{
             System.out.println(this);
             wait(20);
         }
-	/*
-	for(int i =0; i<delta.length;i++){
-	    if(maze[x+delta[i][0]][y+delta[i][1]].equals(" ")){
-		return true;
-	    }
+	if(maze[x][y] == 'E'){
+	    return true;
 	}
-	*/
-
-        
+	for(int i =0; i<delta.length;i++){
+	    if(maze[x+delta[i][0]][y+delta[i][1]] == ' '){
+		maze[x+delta[i][0]][y+delta[i][1]] = '@';
+		if(solve(x+delta[i][0],y+delta[i][1])){
+		    return true; 
+		}else{
+		    maze[x+delta[i][0]][y+delta[i][1]] = '.';
+		}
+	    } 
+	}        
         return false; //so it compiles
     }
 
