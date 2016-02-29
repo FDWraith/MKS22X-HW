@@ -92,7 +92,19 @@ public class Maze{
         }
 	if(maze[x][y] == 'E'){
 	    return true;
+	}else if(maze[x][y] != ' ' || maze[x][y] != 'S'){
+	    return false;
+	}else{
+	    maze[x][y] = '@';
+	    for(int i =0;i<delta.length;i++){
+		if(solve(x+delta[i][0],y+delta[i][1])){
+		    return true;
+		}
+	    }//test all possible routes
+	    maze[x][y] = '.';// all routes have failed
+	    return false;
 	}
+	/*
 	for(int i =0; i<delta.length;i++){
 	    if(maze[x+delta[i][0]][y+delta[i][1]] == ' '){
 		maze[x+delta[i][0]][y+delta[i][1]] = '@';
@@ -104,6 +116,7 @@ public class Maze{
 	    } 
 	}        
         return false; //so it compiles
+	*/
     }
 
 
