@@ -92,7 +92,7 @@ public class Maze{
         }
 	if(maze[x][y] == 'E'){
 	    return true;
-	}else if(maze[x][y] != ' ' || maze[x][y] != 'S'){
+	}else if(maze[x][y] != ' ' && maze[x][y] != 'S'){
 	    return false;
 	}else{
 	    maze[x][y] = '@';
