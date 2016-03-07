@@ -76,21 +76,6 @@ public class Sorts{
     }
 
     public static void mergeSort(int[]old,int start1, int end1, int start2, int end2, int[]nw){
-	/*if(start1 + 1 == end1 && start2 + 1 == end2){
-	    merge(old,start1,end1,start2,end2,nw);
-	}else{
-	    if(start1 + 1 == end1){
-		mergeSort(old,start2,end2/2,end2/2,end2,nw);
-		merge(nw,start1,end1,start2,end2,old);
-	    }else if(start2 + 1 == end2){
-		mergeSort(old,start1,end1/2,end1/2,end1,nw);
-		merge(nw,start1,end1,start2,end2,old);
-	    }else{
-		mergeSort(old,start1,end1/2,end1/2,end1,nw);
-		mergeSort(nw,start2,end2/2,end2/2,end2,old);
-		merge(old,start1,end1,start2,end2,nw);
-	    }
-	    }*/
 	if(start1+1==end2){//when it is a single index
 	    merge(old,start1,end1,start2,end2,nw);//copy it in.
 	}else{
