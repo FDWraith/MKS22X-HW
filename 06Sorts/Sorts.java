@@ -33,12 +33,16 @@ public class Sorts{
 	return end;
     }
     
-    public static void mergeSort(int[]arry){
+    public static void mergesort(int[]arry){
 	int[]v1 = new int[arry.length];
 	mergeSort(arry,0,arry.length/2+arry.length%2,arry.length/2+arry.length%2,arry.length,v1);
 	for(int i=0;i<v1.length;i++){
 	    arry[i] = v1[i];
 	}//copy values in v1 to arry
+    }
+
+    public static String name(){
+	return "6,Zhang,Kevin";
     }
 
 
