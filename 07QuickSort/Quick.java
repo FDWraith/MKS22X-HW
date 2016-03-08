@@ -1,11 +1,12 @@
 import java.util.Arrays;
 import java.util.Random;
 
-public class QuickSelect {
+public class Quick {
     private static Random r = new Random();
 
-    public static int rearrange(int[]ary,int startIndex, int left, int right){
-
+    public static int partition(int[]ary, int left, int right){
+	int startIndex = r.nextInt(right-left+1)+left;
+	
 	if(left == right){
 	    return left;
 	}
@@ -47,7 +48,7 @@ public class QuickSelect {
     }
 
     
-    public static int quickSelect(int[]ary,int k){
+    public static int quickselect(int[]ary,int k){
 	
 	int left = 0;
 	int right = ary.length -1;
@@ -55,18 +56,21 @@ public class QuickSelect {
 	int n;
 	do{
 	    //System.out.println(left+","+right);
-	    numIndex = r.nextInt(right-left+1)+left;
-	    n = rearrange(ary,numIndex,left,right);
+	    n = rearrange(ary,left,right);
 	    //System.out.println(n);
-	    if(n < ary.length-k){
+	    if(n < k){
 		left = n+1;
 	    }else{
 		right = n-1;
 	    }
-	}while(n != ary.length-k);
+	}while(n != k);
 
 	return ary[n];
 	
+    }
+
+    public static String name(){
+	return "6,Zhang,Kevin";
     }
     
     public static void main(String[]args){
