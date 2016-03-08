@@ -93,7 +93,7 @@ public class Sorts{
     
     public static void main(String[]args){
 	int[]test1 = {2,1,3};
-	mergeSort(test1);
+	mergesort(test1);
 	System.out.println(printArray(test1));
 	System.out.println();
 	
@@ -111,7 +111,7 @@ public class Sorts{
 	
 	int[]demon = {10,23,20,1,24,2,3,4,3};
 	System.out.println(printArray(demon));
-	mergeSort(demon);
+	mergesort(demon);
 	System.out.println(printArray(demon));
     }
 }

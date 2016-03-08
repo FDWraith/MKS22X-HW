@@ -56,7 +56,7 @@ public class Quick {
 	int n;
 	do{
 	    //System.out.println(left+","+right);
-	    n = rearrange(ary,left,right);
+	    n = partition(ary,left,right);
 	    //System.out.println(n);
 	    if(n < k){
 		left = n+1;
@@ -76,7 +76,7 @@ public class Quick {
     public static void main(String[]args){
 	int[] test1 = {-5,-1,0,2,1,7,3,4,6,8,10};
 	System.out.println(Arrays.toString(test1));
-	System.out.println(quickSelect(test1,2));
+	System.out.println(quickselect(test1,2));
 	System.out.println(Arrays.toString(test1));
     }
 
