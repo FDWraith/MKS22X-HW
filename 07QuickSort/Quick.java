@@ -69,14 +69,31 @@ public class Quick {
 	
     }
 
+    public static void quickSort(int[]ary){
+	quickSort(ary,0,ary.length-1);
+    }
+
+    private static void quickSort(int[]ary,int left,int right){
+	if(left< right){
+	    int index = partition(ary,left,right);
+	    quickSort(ary,left,index-1);
+	    quickSort(ary,index+1,right);
+	}
+    }
+    
+    
+
     public static String name(){
 	return "6,Zhang,Kevin";
     }
     
     public static void main(String[]args){
-	int[] test1 = {-5,-1,0,2,1,7,3,4,6,8,10};
+	int[]test1 = new int[r.nextInt(100)];
+	for(int i=0;i<test1.length;i++){
+	    test1[i] = r.nextInt(500);
+	}
 	System.out.println(Arrays.toString(test1));
-	System.out.println(quickselect(test1,2));
+	quickSort(test1);
 	System.out.println(Arrays.toString(test1));
     }
 
