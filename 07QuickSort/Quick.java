@@ -88,13 +88,20 @@ public class Quick {
     }
     
     public static void main(String[]args){
-	int[]test1 = new int[r.nextInt(100)];
+	int[]test1 = new int[4000000];
+	int[]test2 = new int[4000000];
+	boolean run = false;
 	for(int i=0;i<test1.length;i++){
-	    test1[i] = r.nextInt(500);
+	    test1[i] = r.nextInt(3);
+	    test2[i] = r.nextInt(Integer.MAX_VALUE) * ((int)(1*(Math.random())-1));
 	}
-	System.out.println(Arrays.toString(test1));
-	quickSort(test1);
-	System.out.println(Arrays.toString(test1));
+	//System.out.println(Arrays.toString(test1));
+	if(run){		
+	    quickSort(test1);
+	}else{
+	    Arrays.sort(test1);
+	}
+	//System.out.println(Arrays.toString(test1));
     }
 
     
