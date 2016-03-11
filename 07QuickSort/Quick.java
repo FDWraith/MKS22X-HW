@@ -19,8 +19,7 @@ public class Quick {
 	right--;
 
 	//Until we reach last element, compare the leftmost element to centerPiece. If greater, swap.
-	while(left != right){
-	    
+	while(left != right){	    
 	    if(ary[left]<=checker){
 		left++;
 	    }else{
@@ -80,7 +79,7 @@ public class Quick {
 	    quickSortOld(ary,index+1,right);
 	}
     }
-
+    
     public static int[] partitionTEST(int[]ary,int left,int right){
 	if(left == right){
 	    int[]end = {left,left};
@@ -158,19 +157,19 @@ public class Quick {
 		cpR--;
 	    }
 	}
-	System.out.println(cpL+","+cpR);
+	//System.out.println(cpL+","+cpR);
 
 	if(ary[left]<checker){
 	    copy[cpL] = ary[left];
 	    cpL++;
-	    System.out.println(Arrays.toString(copy));
+	    //System.out.println(Arrays.toString(copy));
 	}else if(ary[left]==checker){
 	    copy[cpL]=ary[left];
 	    count++;
 	}else{
 	    copy[cpR] = ary[left];
 	    cpR--;
-	    System.out.println(Arrays.toString(copy));
+	    // System.out.println(Arrays.toString(copy));
 	}
 	
 	for(int i=cpL;i<cpL+count;i++){
@@ -181,11 +180,25 @@ public class Quick {
 	    ary[orL+i]=copy[i];
 	}
 	
-	int[]end = {cpL,cpR};
+	int[]end = {};
 	return end;
 	
     }
 
+    public static void quickSort(int[]ary){
+	quickSort(ary,0,ary.length-1);
+    }
+
+    private static void quickSort(int[]ary,int left, int right){
+	
+	if(left<right){
+	    //System.out.println("iteration"+left+","+right);
+	    int[]dexes = partition(ary,left,right);
+	    System.out.println(Arrays.toString(dexes));
+	    quickSort(ary,left,dexes[0]-1);
+	    quickSort(ary,dexes[1]+1,right);	    
+	}
+    }
     
     
 
@@ -194,14 +207,17 @@ public class Quick {
     }
     
     public static void main(String[]args){
-	int[]test1 = {2,2,2,2,2,4,4,4,4,4,4};
-	int[]test2 = new int[4000000];
+	int[]test1 = {3,2};
+	int[]test2 = new int[1000];
+	int[]tester = new int[test2.length];
 	boolean run = false;
-	/*for(int i=0;i<test1.length;i++){
-	    test1[i] = r.nextInt(3);
-	    test2[i] = r.nextInt(Integer.MAX_VALUE) * ((int)(1*(Math.random())-1));
-	}*/
-	System.out.println(Arrays.toString(test1));
+	//System.out.println(Arrays.toString(test2));
+	for(int i=0;i<test2.length;i++){
+	    //test1[i] = r.nextInt(3);
+	    test2[i] = r.nextInt(10);
+	    tester[i] = test2[i];
+	}
+	//System.out.println(Arrays.toString(test2));
 	/*
 	if(run){		
 	    quickSortOld(test1);
@@ -209,8 +225,12 @@ public class Quick {
 	    Arrays.sort(test1);
 	}
 	*/
-	System.out.println(Arrays.toString(partition(test1,0,test1.length-1)));
-	System.out.println(Arrays.toString(test1));
+	//System.out.println(Arrays.toString(partition(test2,0,test2.length-1)));
+	//System.out.println(partitionOld(test1,0,test1.length-1));
+	quickSort(test2);
+	Arrays.sort(tester);
+	System.out.println(Arrays.equals(test2,tester));
+	//System.out.println(Arrays.toString(test2)); 
     }
 
     
