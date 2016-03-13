@@ -79,7 +79,7 @@ public class Quick {
 	    quickSortOld(ary,index+1,right);
 	}
     }
-    
+    /*
     public static int[] partitionTEST(int[]ary,int left,int right){
 	if(left == right){
 	    int[]end = {left,left};
@@ -128,7 +128,7 @@ public class Quick {
 	return end;
     }
 
-    public static int[] partition(int[]ary,int left,int right){
+    public static int[] partitionFAIL(int[]ary,int left,int right){
 	if(left==right){
 	    int[] end = {left,left};
 	    return end;
@@ -183,6 +183,57 @@ public class Quick {
 	int[]end = {};
 	return end;
 	
+    } ALL of this are failed prototypes. 
+    */
+    public static int[] partition(int[]ary,int left,int right){
+	int[]end = new int[2];
+	if(left == right){
+	    end[0] = left;
+	    end[1] = right;
+	    return end;
+	}
+	
+	int index = r.nextInt(right-left+1)+left;
+	int pivot = ary[index];
+	int count = 0;
+	int origLeft = left;
+	int[]copy = new int[right-left+1];
+	int cpL =0;
+	int cpR =copy.length-1;
+	
+	
+	while(left <= right){
+	    if(ary[left] < pivot){
+		copy[cpL]=ary[left];
+		left++;
+		cpL++;
+	    }else if(ary[left] > pivot){
+		copy[cpR]=ary[left];
+		left++;
+		cpR--;
+	    }else{
+		count++;
+		left++;
+	    }
+	}
+
+	int copyOfcpL = cpL;
+	while(count > 0){
+	    copy[copyOfcpL]=pivot;
+	    copyOfcpL++;
+	    count--;
+	}
+	
+	int n = 0;
+	for(int i=origLeft;i<right+1;i++){
+	    ary[i]=copy[n];
+	    n++;
+	}
+	
+	end[0] = cpL+origLeft;
+	end[1] = cpR+origLeft;
+	return end;	
+	
     }
 
     public static void quickSort(int[]ary){
@@ -207,7 +258,7 @@ public class Quick {
     }
     
     public static void main(String[]args){
-	int[]test1 = {3,2};
+	int[]test1 = {1,2,2,2,3,4,7,2,3,4,2,3,2};
 	int[]test2 = new int[1000];
 	int[]tester = new int[test2.length];
 	boolean run = false;
@@ -225,7 +276,7 @@ public class Quick {
 	    Arrays.sort(test1);
 	}
 	*/
-	//System.out.println(Arrays.toString(partition(test2,0,test2.length-1)));
+	//System.out.println(Arrays.toString(partition(test1,0,test1.length-1)));
 	//System.out.println(partitionOld(test1,0,test1.length-1));
 	quickSort(test2);
 	Arrays.sort(tester);
