@@ -245,7 +245,7 @@ public class Quick {
 	if(left<right){
 	    //System.out.println("iteration"+left+","+right);
 	    int[]dexes = partition(ary,left,right);
-	    System.out.println(Arrays.toString(dexes));
+	    //System.out.println(Arrays.toString(dexes));
 	    quickSort(ary,left,dexes[0]-1);
 	    quickSort(ary,dexes[1]+1,right);	    
 	}
@@ -259,13 +259,13 @@ public class Quick {
     
     public static void main(String[]args){
 	int[]test1 = {1,2,2,2,3,4,7,2,3,4,2,3,2};
-	int[]test2 = new int[1000];
+	int[]test2 = new int[4000000];
 	int[]tester = new int[test2.length];
 	boolean run = false;
 	//System.out.println(Arrays.toString(test2));
 	for(int i=0;i<test2.length;i++){
 	    //test1[i] = r.nextInt(3);
-	    test2[i] = r.nextInt(10);
+	    test2[i] = r.nextInt(Integer.MAX_VALUE);
 	    tester[i] = test2[i];
 	}
 	//System.out.println(Arrays.toString(test2));
