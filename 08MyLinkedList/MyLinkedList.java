@@ -99,6 +99,25 @@ public class MyLinkedList {
 	}	
     }
 
+    public int remove(int index){
+	if(start == null || index >= size){
+	    throw(new IndexOutOfBoundsException("Stop giving me bad indexes"));
+	}
+	LNode temp = start;
+	int counter =0;
+	while(counter!=index){
+	    temp = temp.getNext();
+	    counter++;
+	}
+	int store = temp.getValue();
+	if(index == size - 1){
+	    temp.setNext(null);
+	}else{
+	    temp.setNext(temp.getNext());
+	}
+	return store;
+    }
+
     
 
 }
