@@ -83,6 +83,28 @@ public class MyLinkedList {
 	}
     }
 
+    public boolean add(int index,int value){
+	if(index > size){
+	    throw(new IndexOutOfBoundsException("Stop giving me bad indexes"));
+	}
+	if(index == size){
+	    this.add(value);
+	    return true;
+	}
+	int counter = 0;
+	LNode temp = start;
+	while(counter != index){
+	    temp=temp.getNext();
+	    counter++;
+	}
+	LNode insert = new LNode(value);
+	LNode store = temp.getNext();
+	temp.setNext(insert);
+	insert.setNext(store);
+	size++;
+	return true;
+    }
+
     public String toString(){
 	if(start == null){
 	    return "[]";
@@ -105,19 +127,18 @@ public class MyLinkedList {
 	}
 	LNode temp = start;
 	int counter =0;
-	while(counter!=index){
+	while(counter!=index-1){
 	    temp = temp.getNext();
 	    counter++;
 	}
-	int store = temp.getValue();
-	if(index == size - 1){
-	    temp.setNext(null);
-	}else{
-	    temp.setNext(temp.getNext());
+	int store = temp.getNext().getValue();
+	if(temp.getNext()!= null){
+	    temp.setNext(temp.getNext().getNext());
 	}
 	return store;
     }
 
+    
     
 
 }
