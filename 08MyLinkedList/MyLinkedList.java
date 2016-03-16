@@ -68,19 +68,7 @@ public class MyLinkedList {
     }
 
     public boolean add(int value){
-	if(start == null){
-	    start = new LNode(value);
-	    size++;
-	    return true;
-	}else{
-	    LNode temp = start;
-	    while(temp.getNext()!=null){
-		temp = temp.getNext();
-	    }
-	    temp.setNext(new LNode(value));
-	    size++;
-	    return true;
-	}
+	return add(size-1,value);
     }
 
     public boolean add(int index,int value){
