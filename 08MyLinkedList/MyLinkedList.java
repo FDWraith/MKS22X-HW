@@ -123,10 +123,22 @@ public class MyLinkedList {
 	if(temp.getNext()!= null){
 	    temp.setNext(temp.getNext().getNext());
 	}
+	size--;
 	return store;
     }
 
-    
+    public int indexOf(int value){
+	LNode temp = start;
+	int counter =0;
+	while(temp!=null){
+	    if(temp.getValue()==value){
+		return counter;
+	    }
+	    counter++;
+	    temp = temp.getNext();
+	}
+	return -1;
+    }
     
 
 }
