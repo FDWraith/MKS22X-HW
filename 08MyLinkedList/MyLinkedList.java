@@ -1,5 +1,5 @@
 public class MyLinkedList<T>{
-    private LNode start,end;
+    private LNode<T> start,end;
     private int size;
 
     private class LNode<T>{
@@ -18,7 +18,7 @@ public class MyLinkedList<T>{
 	private T getValue(){
 	    return value;
 	}
-	private LNode getNext(){
+	private LNode<T> getNext(){
 	    return next;
 	}
     }
@@ -66,6 +66,12 @@ public class MyLinkedList<T>{
 
     public boolean add(T value){
 	LNode<T> temp = new LNode<T>(value);
+	if(size == 0){
+	    start = temp;
+	    end = temp;
+	    size++;
+	    return true;
+	}
 	end.setNext(temp);
 	end = temp;
 	size++;
@@ -106,7 +112,7 @@ public class MyLinkedList<T>{
 	    return "[]";
 	}else{
 	    String end = "[";
-	    LNode temp = start;
+	    LNode<T> temp = start;
 	    while(temp!=null){
 		end += temp.getValue()+",";
 		temp = temp.getNext();
@@ -122,31 +128,34 @@ public class MyLinkedList<T>{
 	    throw(new IndexOutOfBoundsException("Stop giving me bad indexes"));
 	}
 	if(index == 0){
-	    LNode store = start.getNext();
+	    LNode<T> store = start.getNext();
 	    start.setNext(null);
 	    T info = start.getValue();
 	    start = store;
 	    size--;
 	    return info;	    
 	}
-	LNode temp = start;
+	LNode<T> temp = start;
 	int counter =0;
 	while(counter!=index-1){
 	    temp = temp.getNext();
 	    counter++;
 	}
-	T store = temp.getNext().getValue();
-	if(temp.getNext()!= null){
+	T store;
+	if(temp.getNext().getNext() != null){
+	    store = temp.getNext().getValue();
 	    temp.setNext(temp.getNext().getNext());
 	}else{
+	    store = temp.getNext().getValue();
 	    end = temp;
+	    temp.setNext(null);
 	}
 	size--;
 	return store;
     }
 
     public int indexOf(T value){
-	LNode temp = start;
+	LNode<T> temp = start;
 	int counter =0;
 	while(temp!=null){
 	    if(temp.getValue().equals(value)){

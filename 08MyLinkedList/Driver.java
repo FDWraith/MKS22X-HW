@@ -47,14 +47,20 @@ public class Driver{
         //test removing from head/tail/middle
         m.remove(0);
         n.remove(0);
+	System.out.println(m);
+	System.out.println(n);
         System.out.println(m.toStringDebug());
 
         m.remove(2);
         n.remove(2);
+	System.out.println(m);
+	System.out.println(n);
         System.out.println(m.toStringDebug());
 
         m.remove(m.size()-1);
         n.remove(n.size()-1);
+	System.out.println(m);
+	System.out.println(n);
         System.out.println(m.toStringDebug());
         System.out.println(n);
 
@@ -63,12 +69,16 @@ public class Driver{
         n.add(0,"START");
         m.add(m.size(),"PENULTIMATE");
         n.add(n.size(),"PENULTIMATE");
+	System.out.println(m);
+	System.out.println(n);
         System.out.println(m.toStringDebug());
         System.out.println(n);
 
         //test add
         m.add("Z-END!");
         n.add("Z-END!");
+	System.out.println(m);
+	System.out.println(n);
         System.out.println(m.toStringDebug());
         System.out.println(n);
 
