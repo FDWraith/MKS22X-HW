@@ -96,8 +96,13 @@ public class Driver{
                 m.add(x,""+i);
             }else{
                 int x = rand.nextInt(n.size());
-                if(!n.remove(x).equals(m.remove(x))){
-                    System.out.println("Non matching elements removed\n");
+		String a = n.remove(x);
+		String b = m.remove(x);
+                if(!a.equals(b)){
+		    System.out.println(n);
+		    System.out.println(m);
+		    System.out.println(x);
+                    System.out.println("Non matching elements removed; A:"+a+",B:"+b+"\n");
                     System.exit(1);
                 }
             }

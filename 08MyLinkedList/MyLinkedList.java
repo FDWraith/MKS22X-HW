@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyLinkedList<T> implements Iterable<T>{
     private LNode start,end;
     private int size;
@@ -129,7 +130,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 	int counter = 0;
 	LNode temp = start;
-	while(counter != index){
+	while(counter != index-1){
 	    temp=temp.getNext();
 	    counter++;
 	}
