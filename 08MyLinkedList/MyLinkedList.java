@@ -130,7 +130,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 	int counter = 0;
 	LNode temp = start;
-	while(counter != index-1){
+	while(counter != index-1 ){
 	    temp=temp.getNext();
 	    counter++;
 	}
