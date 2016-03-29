@@ -6,6 +6,10 @@ public class MyStack<T>{
     public MyStack(){
 	data = new MyLinkedList<T>();
     }
+
+    public String toString(){
+	return data.toString();
+    }
     
     /**
      * Adds the given item to the top of the stack.
