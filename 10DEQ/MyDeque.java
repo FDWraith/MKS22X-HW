@@ -28,10 +28,24 @@ public class MyDeque<T> {
     }
 
     public T removeFirst(){
-	return null;
+        T v = (T)(ary[start]);
+	if(start == ary.length-1){
+	    start = 0;
+	}else{
+	    start++;
+	}
+	size--;
+	return v;
     }
     public T removeLast(){
-	return null;
+	T v = (T)(ary[end]);
+	if(end == 0){
+	    end = ary.length-1;
+	}else{
+	    end--;
+	}
+	size--;
+	return v;
     }
     public void addFirst(T value){
 	
@@ -40,10 +54,10 @@ public class MyDeque<T> {
 	
     }
     public T getFirst(){
-	return null;
+	return (T)(ary[start]);
     }
     public T getLast(){
-	return null;
+	return (T)(ary[end]);
     }
     
 }
