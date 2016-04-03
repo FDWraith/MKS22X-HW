@@ -48,10 +48,26 @@ public class MyDeque<T> {
 	return v;
     }
     public void addFirst(T value){
-	
+	if(size >= ary.length){
+	    grow();
+	}
+	if(start == 0){
+	    ary[ary.length-1] = value;
+	}else{
+	    ary[start-1] = value;
+	}
+	size++;
     }
     public void addLast(T value){
-	
+	if(size >= ary.length){
+	    grow();
+	}
+	if(end == ary.length-1){
+	    ary[0] = value;
+	}else{
+	    ary[end+1] = value;
+	}
+	size++;
     }
     public T getFirst(){
 	return (T)(ary[start]);
