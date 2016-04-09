@@ -23,12 +23,14 @@ public class MyDeque<T> {
     private void grow(){
         T[]nw = (T[])(new Object[ary.length*2]);
 	int store = size;
-	for(int i =0;i<size;i++){
+	for(int i =0;i<store;i++){
 	    nw[i] = this.removeFirst();
 	}
+	
 	ary = nw;
 	start =0;
 	end = store-1;
+	size = store;
     }
 
     public T removeFirst(){
@@ -53,7 +55,7 @@ public class MyDeque<T> {
 	}
 	T v = ary[end];
 	ary[end]=null;
-	if(end!= start){
+	if(end != start){
 	    if(end == 0){
 		end = ary.length-1;
 	    }else{

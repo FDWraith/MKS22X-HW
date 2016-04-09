@@ -29,14 +29,48 @@ public class Driver{
 	}catch(Exception e){
 	    //e.printStackTrace();
 	}
-	/*
+	
 	System.out.println(one);
 	one.addFirst("Start");
 	System.out.println(one);
 	one.removeLast();
 	System.out.println(one);
-	*/
-
+	one.addFirst("Start");
+	System.out.println(one);
+	one.addLast("End");
+	System.out.println(one);
+	one.addFirst("Prev");
+	System.out.println(one);
+	one.removeFirst();
+	System.out.println(one);
+	one.addLast("1");
+	one.addLast("2");
+	one.addLast("3");
+	one.addFirst("-1");
+	one.addFirst("-2");
+	one.addLast("4");
+	System.out.println(one);
+	one.addFirst("-3");
+	one.addFirst("-4");
+	System.out.println(one);
+	one.addLast("Boom!");
+	System.out.println(one);
+	one.removeFirst();
+	one.removeFirst();
+	one.removeFirst();
+	one.removeFirst();
+	one.removeFirst();
+	one.removeLast();
+	System.out.println(one);
+	one.removeFirst();
+	one.removeFirst();
+	one.removeFirst();
+	one.removeFirst();
+	System.out.println(one);
+	one.addFirst("Hello");
+	System.out.println(one);
+	one.removeFirst();
+	System.out.println(one);
 	
 	Random r = new Random();
         for(int i = 0;i<20;i++){
@@ -51,7 +85,7 @@ public class Driver{
 
 	//System.out.println(one);
 	
-	
+	/*
 	int counter = 0;
  	while(one.getSize()!= 0 && counter < 1000){
 	    int op = r.nextInt(6);
@@ -72,7 +106,7 @@ public class Driver{
 	}
 	System.out.println(one);
 	System.out.println("Finished~!");
-	
+	*/
     }
     
 
