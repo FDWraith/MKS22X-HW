@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 public class BetterMaze{
     private char[][] maze;
     private int[] solution;
@@ -37,6 +38,30 @@ public class BetterMaze{
     
     }
 
+    public BetterMaze(String dataIn){
+	int c1 =0;
+	int c2 =0;
+	ArrayList<Character> tmp = new ArrayList<Character>();
+	Scanner in = new Scanner(new File(dataIn));
+	while(in.hasNext()){
+	    String temp = in.nextLine();
+	    for(int i =0;i<temp.length()-1;i++){
+		tmp.add(temp.charAt(i));
+	    }
+	    c2 = temp.length()-1;
+	    c1++;
+	}
+	int index = 0;
+	maze = new char[c1][c2];
+	for(int i =0;i<maze.length;i++){
+	    for(int j=0;j<maze.length;j++){
+		maze[i][j] = tmp.get(index);
+		index++;
+	    }
+	}
+    }
+
+    
     public int[] solutionCoordinates(){
 	if(!isSolved){
 	    solveDFS();//default solve is DFS;
@@ -114,13 +139,13 @@ public class BetterMaze{
     }
 	
 
-    public void convertSolution(Coordinate[] path){
-        solution = new int[path.length*2];
+    private void convertSolution(MyDeque<Coordinate> path){
+        solution = new int[path.size()*2];
 	int index = 0;
 	while(path.isEmpty() != true){
 	    int[] temp = path.removeFirst();
-	    solution[index] = temp[0];
-	    solution[index+1]=temp[1];
+	    solution[index] = temp.getX();
+	    solution[index+1]=temp.getY();
 	    index += 2;
 	}
     }
