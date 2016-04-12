@@ -1,6 +1,12 @@
 public class Driver{
     public static void main(String[]args){
-	String s = "hello\n";
-	System.out.println(s.length());
+        BetterMaze test = new BetterMaze("data2.dat");
+	test.setAnimate(true);
+	if(args.length == 0){
+	    test.solveDFS();
+	}else{
+	    test.solveBFS();
+	}
+	
     }
 }
