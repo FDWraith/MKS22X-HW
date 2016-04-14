@@ -20,7 +20,7 @@ public class BetterMaze{
 	    prev = null;
 	}
 	public Coordinate(int x, int y,Coordinate prev){
-	    int[] cors = new int[2];
+	    cors = new int[2];
 	    cors[0] = x;
 	    cors[1] = y;
 	    this.prev = prev;
@@ -197,14 +197,14 @@ public class BetterMaze{
     private boolean solve(){
 	isSolved = true;//indicate that a solve has been attempted
 	Coordinate start = new Coordinate(startRow,startCol);
-	System.out.println(startRow+","+startCol);
-	System.out.println(start);
+	//System.out.println(startRow+","+startCol);
+	//System.out.println(start);
 	placesToGo.add(start);
 	int counter = 0;
 	while(placesToGo.hasNext()){
 	    Coordinate one = placesToGo.next();
-	    System.out.println(counter);
-	    System.out.println(one);
+	    //System.out.println(counter);
+	    //System.out.println(one);
 	    maze[one.getX()][one.getY()] = '.';
 	    int[][] surround = getSurroundings(one);
 	    for(int i = 0;i<surround.length;i++){
