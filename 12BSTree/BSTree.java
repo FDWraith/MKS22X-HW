@@ -87,7 +87,41 @@ public class BSTree<T extends Comparable<T>>{
 		    }
 		}
 	    }	    
-	}	
+	}
+	private TreeNode remove(T val){
+	    //Pre-Condition: has at least one child.
+	    if(!hasChildren()){
+		if(hasRight){
+		    if(getRight().getValue().compareTo(val) == 0){
+			TreeNode temp = getRight();
+			setRight(null);
+			return temp;
+		    }else{
+			if(getRight().hasRight() || getRight.hasLeft()){
+			    return getRight().remove(val);
+			}else{
+			    return null;
+			}
+		    }
+		}else{
+		    if(getLeft().getValue().compareTo(val)==0){
+			TreeNode temp = getLeft();
+			setLeft(null);
+			return temp;
+		    }else{
+			if(getLeft().hasLeft()|| getLeft().hasRight()){
+			    return getLeft().remove(val);
+			}else{
+			    return null;
+			}
+		    }
+		}
+	    }else{
+		//right tree algorithm
+		TreeNode current = getRight();
+		
+	    }
+	}
     }
 
     private TreeNode root;
@@ -125,6 +159,10 @@ public class BSTree<T extends Comparable<T>>{
 	    }
 	}
 	return false;
+    }
+
+    public void remove(T val){
+	root.remove(val);
     }
 
 }
