@@ -14,5 +14,7 @@ public class Driver{
 	System.out.println(test);
 	System.out.println(test.contains(-2));
 	System.out.println(test.contains(20));
+	test.remove(20);
+	System.out.println(test);
     }
 }

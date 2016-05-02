@@ -87,41 +87,7 @@ public class BSTree<T extends Comparable<T>>{
 		    }
 		}
 	    }	    
-	}
-	private TreeNode remove(T val){
-	    //Pre-Condition: has at least one child.
-	    if(!hasChildren()){
-		if(hasRight){
-		    if(getRight().getValue().compareTo(val) == 0){
-			TreeNode temp = getRight();
-			setRight(null);
-			return temp;
-		    }else{
-			if(getRight().hasRight() || getRight.hasLeft()){
-			    return getRight().remove(val);
-			}else{
-			    return null;
-			}
-		    }
-		}else{
-		    if(getLeft().getValue().compareTo(val)==0){
-			TreeNode temp = getLeft();
-			setLeft(null);
-			return temp;
-		    }else{
-			if(getLeft().hasLeft()|| getLeft().hasRight()){
-			    return getLeft().remove(val);
-			}else{
-			    return null;
-			}
-		    }
-		}
-	    }else{
-		//right tree algorithm
-		TreeNode current = getRight();
-		
-	    }
-	}
+	}	
     }
 
     private TreeNode root;
@@ -162,7 +128,75 @@ public class BSTree<T extends Comparable<T>>{
     }
 
     public void remove(T val){
-	root.remove(val);
+	if(!contains(val)){
+	    System.out.println("Tree Does Not have Such Element");
+	}else{	    
+	    //root.remove(val);
+
+	    TreeNode current = root;
+	    TreeNode temp = current;
+	    int compare = -1;
+	    while(compare!=0){
+		compare = current.getValue().compareTo(val);
+		if(compare > 0){
+		    temp = current;
+		    current = current.getLeft();
+		}else if(compare < 0){
+		    temp = current;
+		    current = current.getRight();
+		}
+	    }
+
+	    TreeNode store = null;
+	    if(!current.hasChildren()){
+		//nada
+	    }else if(current.hasRight()){
+		store = rightTreeAlgorithm(current);
+	    }else{
+		store = leftTreeAlgorithm(current);
+	    }
+
+	    if(temp.getLeft().getValue().compareTo(current.getValue()) == 0){
+		temp.setLeft(store);
+	    }else{
+		temp.setRight(store);
+	    }
+	    
+	}
+    }
+
+    private TreeNode rightTreeAlgorithm(TreeNode replaced){
+	TreeNode current = replaced.getRight();
+	TreeNode temp = current;
+	while(current.hasChildren()){
+	    if(current.hasLeft()){
+		temp = current;
+		current = current.getLeft();
+	    }
+	}
+	temp.setLeft(current.getRight());//parent's new left children is current's right children.
+	    
+	current.setLeft(replaced.getLeft());//child takes over
+	current.setRight(replaced.getRight());
+
+	return current;//current replaces the former TreeNode;
+    }
+
+    private TreeNode leftTreeAlgorithm(TreeNode replaced){
+	TreeNode current = replaced.getLeft();
+	TreeNode temp = current;
+	while(current.hasChildren()){
+	    if(current.hasRight()){
+		temp = current;
+		current = current.getRight();
+	    }
+	}
+	temp.setRight(current.getLeft());
+
+	current.setLeft(replaced.getLeft());
+	current.setRight(replaced.getRight());
+
+	return current;
     }
 
 }
