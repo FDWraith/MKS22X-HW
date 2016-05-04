@@ -23,7 +23,7 @@ public class BSTree<T extends Comparable<T>>{
 	    return value!=null;
 	}
 	private boolean hasChildren(){
-	    return hasRight() && hasLeft();
+	    return hasRight() || hasLeft();
 	}
 	private T getValue(){
 	    return value;
@@ -57,7 +57,7 @@ public class BSTree<T extends Comparable<T>>{
 	    }
 	}
 	private String toTreeString(){
-	    if(hasChildren()){
+	    if(hasLeft() && hasRight()){
 		return getValue() + " " + getLeft().toTreeString() + " " + getRight().toTreeString();
 	    }else if(hasLeft()){
 		return getValue() + " " + getLeft().toTreeString()+ " _";
@@ -133,8 +133,12 @@ public class BSTree<T extends Comparable<T>>{
 	}else{	    
 	    //root.remove(val);
 
+	    //System.out.println(this);
+
+	    //System.out.println("Break 0");
+	    
 	    TreeNode current = root;
-	    TreeNode temp = current;
+	    TreeNode temp = null;
 	    int compare = -1;
 	    while(compare!=0){
 		compare = current.getValue().compareTo(val);
@@ -147,35 +151,60 @@ public class BSTree<T extends Comparable<T>>{
 		}
 	    }
 
+	    //System.out.println(root.toTreeString());//breaks here as well?
+	    
+	    //System.out.println("Break 1");	    
+	    
 	    TreeNode store = null;
 	    if(!current.hasChildren()){
 		//nada
 	    }else if(current.hasRight()){
 		store = rightTreeAlgorithm(current);
 	    }else{
-		store = leftTreeAlgorithm(current);
+		store = leftTreeAlgorithm(current);		
+	    }	    
+	    
+	    // System.out.println("Break 2");
+	    
+	    if(temp == null){
+		root = store;
+	    }else{
+		if(temp.getLeft().getValue().compareTo(current.getValue()) == 0){
+		    temp.setLeft(store);
+		}else{
+		    temp.setRight(store);
+		}
 	    }
 
-	    if(temp.getLeft().getValue().compareTo(current.getValue()) == 0){
-		temp.setLeft(store);
-	    }else{
-		temp.setRight(store);
-	    }
+	    //System.out.println(store);
 	    
+	    //System.out.println(store.toTreeString());//something is wrong with store?
+	    
+	    //System.out.println("Break 3");
+
+	    //System.out.println(root.toTreeString());//something is causing toTreeSting to break
+
+	    //System.out.println("Break 4");
 	}
     }
 
     private TreeNode rightTreeAlgorithm(TreeNode replaced){
 	TreeNode current = replaced.getRight();
-	TreeNode temp = current;
-	while(current.hasChildren()){
-	    if(current.hasLeft()){
-		temp = current;
-		current = current.getLeft();
-	    }
+	TreeNode temp = replaced;
+	while(current.hasLeft()){
+	    temp = current;
+	    current = current.getLeft();	    
 	}
-	temp.setLeft(current.getRight());//parent's new left children is current's right children.
-	    
+	
+	//System.out.println("Parent: "+temp.getValue()+" & Child:"+current.getValue());
+	
+	if(temp.getValue().compareTo(replaced.getValue()) == 0){
+	    temp.setRight(current.getRight());
+	}else{
+	    temp.setLeft(current.getRight());//parent's new left children is current's right children.
+	}
+	
+	
 	current.setLeft(replaced.getLeft());//child takes over
 	current.setRight(replaced.getRight());
 
@@ -184,15 +213,17 @@ public class BSTree<T extends Comparable<T>>{
 
     private TreeNode leftTreeAlgorithm(TreeNode replaced){
 	TreeNode current = replaced.getLeft();
-	TreeNode temp = current;
-	while(current.hasChildren()){
-	    if(current.hasRight()){
-		temp = current;
-		current = current.getRight();
-	    }
+	TreeNode temp = replaced;
+	while(current.hasRight()){
+	    temp = current;
+	    current = current.getRight();
 	}
-	temp.setRight(current.getLeft());
-
+	if(temp.getValue().compareTo(replaced.getValue()) == 0){
+	    temp.setLeft(current.getLeft());
+	}else{
+	    temp.setRight(current.getLeft());
+	}
+	
 	current.setLeft(replaced.getLeft());
 	current.setRight(replaced.getRight());
 
