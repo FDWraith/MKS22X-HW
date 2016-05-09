@@ -113,14 +113,14 @@ public class MyHeap<T extends Comparable<T>>{
 
     public T peek(){
 	if(size == 0){
-	    return null;
+	    throw(new NoSuchElementException());
 	}
 	return heap[1];
     }
 
     public T delete(){
 	if(size == 0){
-	    return null;
+	    throw(new NoSuchElementException());
 	}
 	T temp = heap[1];
 	heap[1] = heap[size];
