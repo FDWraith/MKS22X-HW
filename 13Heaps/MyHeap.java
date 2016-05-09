@@ -1,3 +1,6 @@
+import java.util.*;
+
+@SuppressWarnings("unchecked")
 public class MyHeap<T extends Comparable<T>>{
 
     private static boolean isMaxHeap;
@@ -92,7 +95,7 @@ public class MyHeap<T extends Comparable<T>>{
 	}
     }
 
-    private void grow(){
+    private void doubleSize(){
 	T[] temp = (T[])(new Comparable[heap.length * 2]);
 	System.arraycopy(heap,0,temp,0,heap.length);
 	heap = temp;
@@ -100,7 +103,7 @@ public class MyHeap<T extends Comparable<T>>{
 
     public void add(T element){
 	if(size == heap.length - 1){
-	    grow();
+	    doubleSize();
 	}//conditional start.
 
 	size++;
@@ -115,7 +118,7 @@ public class MyHeap<T extends Comparable<T>>{
 	return heap[1];
     }
 
-    public T remove(){
+    public T delete(){
 	if(size == 0){
 	    return null;
 	}

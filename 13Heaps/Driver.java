@@ -1,7 +1,7 @@
 public class Driver{
 
     public static void main(String[]args){
-	MyHeap<Integer> test = new MyHeap<Integer>();
+	MyHeap<Integer> test = new MyHeap<Integer>(false);
 	System.out.println(test);
 	test.add(1);
 	System.out.println(test);
@@ -15,7 +15,7 @@ public class Driver{
 	System.out.println(test);
 	test.add(2);
 	System.out.println(test);
-	test.remove();
+	test.delete();
 	System.out.println(test);
 	System.out.println(test.peek());
     }
